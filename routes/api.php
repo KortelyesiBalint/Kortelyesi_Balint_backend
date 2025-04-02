@@ -11,3 +11,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/ingatlan', [IngatlanController::class, 'index']);
 Route::post('/ingatlan', [IngatlanController::class, 'store']);
+Route::delete('/ingatlan', [IngatlanController::class, 'destroy']);

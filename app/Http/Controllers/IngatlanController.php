@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ingatlan;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -33,5 +34,16 @@ class IngatlanController extends Controller
             return response()->json(["message" => "Hiányos adatok!"], 400, options:JSON_UNESCAPED_UNICODE);
         }
 
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        try {
+            $ingatlan = Ingatlan::findOrFail($id);
+            $ingatlan->delete();
+            return response()->json(["message" => "Sikeres törlés!"], 204, options:JSON_UNESCAPED_UNICODE);
+        } catch (Exception $th) {
+            return response()->json(["message" => "Ingatlan nem létezik"], 404, options:JSON_UNESCAPED_UNICODE);
+        }
     }
 }

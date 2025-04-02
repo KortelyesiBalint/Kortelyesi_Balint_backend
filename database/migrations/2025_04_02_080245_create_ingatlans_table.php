@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ingatlans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("kategoria")->references("id")->on("kategoria")->onDelete("cascade");
+            $table->foreignId("kategoria")->references("id")->on("kategorias")->onDelete("cascade");
             $table->string("leiras");
             $table->date("hirdetesDatuma")->default(now());
             $table->boolean("tehermentes");
